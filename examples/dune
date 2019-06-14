@@ -1,0 +1,10 @@
+(executables
+  (names count_clicks)
+  (libraries cocoa)
+  (link_flags
+    -cclib -ObjC
+    -cclib /System/Library/Frameworks/Foundation.framework/Foundation
+    -cclib /System/Library/Frameworks/AppKit.framework/AppKit
+    ; -cclib /System/Library/Frameworks/WebKit.framework/WebKit
+  )
+)

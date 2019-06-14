@@ -1,0 +1,14 @@
+EXCLUDE_QUERY_DIR
+B /Users/boris/.opam/ocsigen.407/lib/bytes
+B /Users/boris/.opam/ocsigen.407/lib/ctypes
+B /Users/boris/.opam/ocsigen.407/lib/integers
+B /Users/boris/.opam/ocsigen.407/lib/ocaml
+B /Users/boris/.opam/ocsigen.407/lib/ocaml/threads
+B ../_build/default/src/.cocoa.objs/byte
+S /Users/boris/.opam/ocsigen.407/lib/bytes
+S /Users/boris/.opam/ocsigen.407/lib/ctypes
+S /Users/boris/.opam/ocsigen.407/lib/integers
+S /Users/boris/.opam/ocsigen.407/lib/ocaml
+S /Users/boris/.opam/ocsigen.407/lib/ocaml/threads
+S .
+FLG -open Cocoa -w @a-4-29-40-41-42-44-45-48-58-59-60-40 -strict-sequence -strict-formats -short-paths -keep-locs
