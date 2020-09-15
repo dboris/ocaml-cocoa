@@ -1,6 +1,9 @@
 (library
   (name cocoa)
+  (public_name cocoa)
   (libraries ctypes.foreign)
-  (c_names CamlProxy)
-  (c_flags -x objective-c)
+  (foreign_stubs
+    (language c)
+    (names CamlProxy)
+    (flags :standard -x objective-c))
 )
