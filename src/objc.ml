@@ -57,7 +57,7 @@ let register_wrap_cb class_name cb =
 
 let combine_options = List.fold_left UInt.logor UInt.zero
 
-let method_signature ?(args = []) ~ret =
+let method_signature ~args ~ret =
     (* Implicit args: self and _cmd *)
     encode_type ret :: encode_type Id :: encode_type SEL :: List.map encode_type args
     |> String.concat ""

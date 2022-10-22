@@ -26,7 +26,7 @@
     NSMethodSignature *ms = [self.targetObject methodSignatureForSelector:sel];
     if (ms == nil) {
         value camlObj = *[self camlObject];
-        methClosure = caml_get_public_method(camlObj, hash_variant("methodSignatureForSelector'"));
+        methClosure = caml_get_public_method(camlObj, caml_hash_variant("methodSignatureForSelector'"));
         NSAssert(methClosure != 0, @"camlObj does not implement methodSignatureForSelector' method");
         result = caml_callback2(methClosure, camlObj, caml_copy_string([NSStringFromSelector(sel) UTF8String]));
         return [NSMethodSignature signatureWithObjCTypes:String_val(result)];
@@ -77,7 +77,7 @@
                         argClassName = @"NSNotification";
                     }
                     NSString *wrapClosureName = [NSString stringWithFormat:@"wrap%@", argClassName];
-                    value *wrapClosure = caml_named_value([wrapClosureName UTF8String]);
+                    const value *wrapClosure = caml_named_value([wrapClosureName UTF8String]);
                     NSAssert(wrapClosure != NULL, @"wrapClosure for %@ not found", argClassName);
                     result = caml_callback2(
                         methClosure,
@@ -129,7 +129,7 @@
     NSString *methodName = NSStringFromSelector(sel);
     NSString *camlMethodName = [methodName stringByReplacingOccurrencesOfString:@":" withString:@"'"];
     value camlObj = *[self camlObject];
-    methClosure = caml_get_public_method(camlObj, hash_variant([camlMethodName UTF8String]));
+    methClosure = caml_get_public_method(camlObj, caml_hash_variant([camlMethodName UTF8String]));
     bool camlObjectOverridesMethod = methClosure != 0;
 
     // Proxy receives `forwardInvocation:` from C-side. Must route it to either camlObject or targetObject.
@@ -141,7 +141,7 @@
         SEL selArg;
         [invocation getArgument:&selArg atIndex:2];
         NSString *camlMethodName = [NSStringFromSelector(selArg) stringByReplacingOccurrencesOfString:@":" withString:@"'"];
-        methClosure = caml_get_public_method(camlObj, hash_variant([camlMethodName UTF8String]));
+        methClosure = caml_get_public_method(camlObj, caml_hash_variant([camlMethodName UTF8String]));
         bool camlObjectOverridesSelectorArg = methClosure != 0;
 
         if (camlObjectOverridesSelectorArg) {
